@@ -121,7 +121,7 @@ const Navbar = () => {
               </Link>
             </div>
             <div>
-              <Link to="/register" className="btn bg-primary">
+              <Link to="/signup" className="btn bg-primary">
                 Sign Up
               </Link>
             </div>
