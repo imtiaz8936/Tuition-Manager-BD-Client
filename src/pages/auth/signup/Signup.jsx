@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
 import { Link } from "react-router";
+import useAuth from "../../../hooks/useAuth";
 
 const Signup = () => {
   const {
@@ -11,6 +12,8 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
   const [show, setShow] = useState(false);
+  const { name } = useAuth();
+  console.log(name);
 
   const handleSignup = () => {
     console.log("clicked");
