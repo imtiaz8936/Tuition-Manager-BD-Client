@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import { imageUpload } from "../../../utils";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const Signup = () => {
   const {
@@ -13,8 +15,8 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
   const [show, setShow] = useState(false);
-  const { name } = useAuth();
-  console.log(name);
+  const { createUser, updateUserProfile, setUser } = useAuth();
+  const navigate = useNavigate();
 
   const handleSignup = async (data) => {
     const { name, image, email, password } = data;
@@ -23,6 +25,29 @@ const Signup = () => {
     const photo = await imageUpload(imageFile);
     console.log(photo);
     console.log(data);
+
+    await createUser(email, password)
+      .then((userCredential) => {
+        updateUserProfile(name, photo)
+          .then(() => {
+            const user = userCredential.user;
+            setUser(user);
+            console.log(user);
+            Swal.fire({
+              icon: "success",
+              title: "SignUp Successful",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/");
+          })
+          .catch((error) => {
+            toast.error(error);
+          });
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   return (

@@ -5,6 +5,7 @@ import Logo from "../../../Components/Logo/Logo";
 // import useAuth from "../../../Hooks/useAuth";
 // import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
   const navLinks = (
@@ -45,7 +46,7 @@ const Navbar = () => {
   //   const { user, logOut } = useAuth();
   //   const navigate = useNavigate();
 
-  const user = false;
+  const { user } = useAuth();
 
   const handleSignout = () => {
     //     logOut()
