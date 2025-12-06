@@ -4,6 +4,7 @@ import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
 import { Link } from "react-router";
 import useAuth from "../../../hooks/useAuth";
+import { imageUpload } from "../../../utils";
 
 const Signup = () => {
   const {
@@ -15,8 +16,13 @@ const Signup = () => {
   const { name } = useAuth();
   console.log(name);
 
-  const handleSignup = () => {
-    console.log("clicked");
+  const handleSignup = async (data) => {
+    const { name, image, email, password } = data;
+    console.log({ name, image, email, password });
+    const imageFile = image[0];
+    const photo = await imageUpload(imageFile);
+    console.log(photo);
+    console.log(data);
   };
 
   return (
