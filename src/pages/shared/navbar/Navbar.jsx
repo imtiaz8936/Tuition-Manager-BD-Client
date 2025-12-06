@@ -1,11 +1,10 @@
 import React from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import "./Navbar.css";
 import Logo from "../../../Components/Logo/Logo";
-// import useAuth from "../../../Hooks/useAuth";
-// import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const navLinks = (
@@ -43,26 +42,23 @@ const Navbar = () => {
     </>
   );
 
-  //   const { user, logOut } = useAuth();
-  //   const navigate = useNavigate();
-
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
+  const navigate = useNavigate();
 
   const handleSignout = () => {
-    //     logOut()
-    //       .then(() => {
-    //         // toast.success("Logout Successful");
-    //         Swal.fire({
-    //           icon: "success",
-    //           title: "You Signed Out",
-    //           showConfirmButton: false,
-    //           timer: 1500,
-    //         });
-    //         navigate("/signin");
-    //       })
-    //       .catch((error) => {
-    //         toast.error(error);
-    //       });
+    logOut()
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "You Signed Out",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/signin");
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   return (
