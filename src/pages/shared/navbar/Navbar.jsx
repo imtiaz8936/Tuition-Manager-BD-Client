@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import "./Navbar.css";
 import Logo from "../../../Components/Logo/Logo";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { IoLogOutOutline } from "react-icons/io5";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+  const navigate = useNavigate();
+  const [showName, setShowName] = useState(false);
   const navLinks = (
     <>
       <NavLink
@@ -39,11 +43,18 @@ const Navbar = () => {
       >
         <li>Contact</li>
       </NavLink>
+      {user ? (
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) => `${isActive ? "active-link" : ""}`}
+        >
+          <li>Dashboard</li>
+        </NavLink>
+      ) : (
+        ""
+      )}
     </>
   );
-
-  const { user, logOut } = useAuth();
-  const navigate = useNavigate();
 
   const handleSignout = () => {
     logOut()
@@ -98,12 +109,44 @@ const Navbar = () => {
           </ul>
         </div>
         {user ? (
-          <div className="navbar-end gap-2">
-            <img
-              className="w-14 h-14 rounded-full"
-              src={user?.photoURL}
-              alt="profile-photo"
-            />
+          <div className="navbar-end gap-2 relative">
+            <button
+              className="cursor-pointer"
+              popoverTarget="popover-1"
+              style={{ anchorName: "--anchor-1" }}
+            >
+              <img
+                className="w-14 h-14 rounded-full"
+                src={user?.photoURL}
+                alt="profile-photo"
+                onMouseEnter={() => setShowName(true)}
+                onMouseLeave={() => setShowName(false)}
+              />
+            </button>
+            {showName && (
+              <div className="absolute mt-26 mr-24 bg-gray-800 text-white text-sm px-3 py-1 rounded-md shadow-md whitespace-nowrap z-10">
+                {user.displayName}
+              </div>
+            )}
+            <div
+              className="dropdown menu w-52 rounded-box bg-base-100 shadow-sm space-y-5"
+              popover="auto"
+              id="popover-1"
+              style={{ positionAnchor: "--anchor-1" }}
+            >
+              <div className="space-y-1">
+                <h2 className="text-xl font-semibold">{user.displayName}</h2>
+                <p className="text-red-500 text-[16px]">{user.email}</p>
+              </div>
+              <Link
+                to="/signin"
+                onClick={handleSignout}
+                className="btn btn-primary w-full text-[16px] text-black
+                                flex flex-inline justify-center items-center"
+              >
+                Sign Out <IoLogOutOutline size={20} />
+              </Link>
+            </div>
             <div>
               <Link onClick={handleSignout} to="" className="btn bg-primary">
                 Sign Out

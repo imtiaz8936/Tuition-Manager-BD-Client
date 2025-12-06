@@ -38,7 +38,7 @@ const Signin = () => {
   };
   return (
     <div className="max-w-7xl mx-auto flex justify-center items-center mt-10 mb-20">
-      <title>Login</title>
+      <title>Tuition-ManagerBD | Sign In</title>
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <h1 className="font-bold text-3xl text-center mt-5">
           Sign In Your Account
@@ -108,7 +108,7 @@ const Signin = () => {
                 type="submit"
                 className="btn btn-neutral rounded-md mt-4 text-[16px] font-semibold hover:text-black hover:bg-gray-100 transition-colors"
               >
-                Login
+                Sign In
               </button>
               <p className="flex flex-inline gap-3 font-semibold text-[14px] mt-2">
                 Don't have an account?
