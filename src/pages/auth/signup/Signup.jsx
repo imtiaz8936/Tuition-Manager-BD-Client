@@ -32,7 +32,6 @@ const Signup = () => {
           .then(() => {
             const user = userCredential.user;
             setUser(user);
-            console.log(user);
             Swal.fire({
               icon: "success",
               title: "SignUp Successful",
