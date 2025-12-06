@@ -16,7 +16,26 @@ const Signin = () => {
   const [show, setShow] = useState(false);
   const { signIn, setUser } = useAuth();
   const navigate = useNavigate();
-  const handleSignin = async (data) => {};
+  const handleSignin = async (data) => {
+    const { email, password } = data;
+
+    await signIn(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setUser(user);
+        console.log(user);
+        Swal.fire({
+          icon: "success",
+          title: "SignIn Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
   return (
     <div className="max-w-7xl mx-auto flex justify-center items-center mt-10 mb-20">
       <title>Login</title>
