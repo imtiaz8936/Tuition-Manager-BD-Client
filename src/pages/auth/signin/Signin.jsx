@@ -1,87 +1,37 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaEye } from "react-icons/fa";
-import { IoEyeOff } from "react-icons/io5";
-import { Link, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
-import { imageUpload } from "../../../utils";
-import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router";
+import { IoEyeOff } from "react-icons/io5";
+import { FaEye } from "react-icons/fa";
 
-const Signup = () => {
+const Signin = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const [show, setShow] = useState(false);
-  const { createUser, updateUserProfile, setUser } = useAuth();
+  const { signIn, setUser } = useAuth();
   const navigate = useNavigate();
-
-  const handleSignup = async (data) => {
-    const { name, image, email, password } = data;
-    console.log({ name, image, email, password });
-    const imageFile = image[0];
-    const photo = await imageUpload(imageFile);
-    console.log(photo);
-    console.log(data);
-
-    await createUser(email, password)
-      .then((userCredential) => {
-        updateUserProfile(name, photo)
-          .then(() => {
-            const user = userCredential.user;
-            setUser(user);
-            console.log(user);
-            Swal.fire({
-              icon: "success",
-              title: "SignUp Successful",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            navigate("/");
-          })
-          .catch((error) => {
-            toast.error(error);
-          });
-      })
-      .catch((error) => {
-        toast.error(error);
-      });
-  };
-
+  const handleSignin = async (data) => {};
   return (
     <div className="max-w-7xl mx-auto flex justify-center items-center mt-10 mb-20">
-      <title>Register</title>
+      <title>Login</title>
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-        <h1 className="font-bold text-3xl text-center mt-5">Sign Up Here</h1>
+        <h1 className="font-bold text-3xl text-center mt-5">
+          Sign In Your Account
+        </h1>
         <div className="card-body">
-          <form onSubmit={handleSubmit(handleSignup)}>
+          <form onSubmit={handleSubmit(handleSignin)}>
             <fieldset className="fieldset">
-              <label className="label">Name</label>
-              <input
-                type="name"
-                {...register("name", {
-                  required: "Name is required",
-                  maxLength: {
-                    value: 20,
-                    message: "Name cannot exceed 20 characters",
-                  },
-                })}
-                className="input"
-                placeholder="Your Name"
-              />
-              {errors.name && (
-                <p className="text-red-500 text-xs mt-2">
-                  {errors.name.message}
-                </p>
-              )}
-
               <label className="label">Email</label>
               <input
                 type="email"
                 {...register("email", {
-                  required: "Email is required",
+                  required: "This field is required",
                   maxLength: {
                     value: 30,
                     message: "Email cannot exceed 30 characters",
@@ -100,24 +50,12 @@ const Signup = () => {
                 </p>
               )}
 
-              <label className="label">Profile Image</label>
-              <input
-                type="file"
-                {...register("image", { required: "Image is required" })}
-                className="file-input"
-              />
-              {errors.image && (
-                <p className="text-red-500 text-xs mt-2">
-                  {errors.image.message}
-                </p>
-              )}
-
               <div className="relative">
                 <label className="label">Password</label>
                 <input
-                  type={show ? "text" : "password"}
+                  type="password"
                   {...register("password", {
-                    required: "Password is required",
+                    required: true,
                     minLength: {
                       value: 6,
                       message: "Password must be at least 6 characters long",
@@ -145,28 +83,27 @@ const Signup = () => {
                 </p>
               )}
               <div>
-                <p className="flex flex-inline gap-4 font-semibold text-[14px]">
-                  Already have an account?
-                  <Link to="/signin" className="text-red-500 underline">
-                    Sign In
-                  </Link>
-                </p>
+                <a className="link link-hover">Forgot password?</a>
               </div>
               <button
                 type="submit"
-                className="btn btn-neutral mt-4 text-[16px] font-semibold hover:text-black hover:bg-gray-100 transition-colors"
+                className="btn btn-neutral rounded-md mt-4 text-[16px] font-semibold hover:text-black hover:bg-gray-100 transition-colors"
               >
-                Sign Up
+                Login
               </button>
+              <p className="flex flex-inline gap-3 font-semibold text-[14px] mt-2">
+                Don't have an account?
+                <Link to="/signup" className="text-red-500 underline">
+                  Sign Up
+                </Link>
+              </p>
             </fieldset>
           </form>
-
           <div className="flex items-center justify-center gap-2 my-2">
             <div className="h-px w-16 bg-blue-700"></div>
             <span className="text-[16px] text-blue-700">or continue with</span>
             <div className="h-px w-16 bg-blue-700"></div>
           </div>
-
           <button
             type="button"
             className="flex items-center justify-center gap-3 btn btn-neutral mt-2 text-[16px] px-5 py-2 rounded-md w-full font-semibold hover:text-black hover:bg-gray-100 transition-colors cursor-pointer"
@@ -179,4 +116,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Signin;
