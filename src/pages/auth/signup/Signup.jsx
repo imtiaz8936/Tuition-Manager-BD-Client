@@ -131,6 +131,37 @@ const Signup = () => {
                 </p>
               )}
 
+              <label className="label">Your Role</label>
+              <select
+                {...register("role", {
+                  required: "Role is required",
+                })}
+                defaultValue="Pick a Role"
+                className="select"
+              >
+                <option disabled={true}>Pick a Role</option>
+                <option value="Student">Student</option>
+                <option value="Tutor">Tutor</option>
+              </select>
+              {errors.role && (
+                <p className="text-red-500 text-xs mt-2">
+                  {errors.role.message}
+                </p>
+              )}
+
+              <label className="label">Phone</label>
+              <input
+                type="tel"
+                {...register("phone", { required: "Phone number is required" })}
+                className="input"
+                placeholder="Enter Your Phone Number"
+              />
+              {errors.phone && (
+                <p className="text-red-500 text-xs mt-2">
+                  {errors.phone.message}
+                </p>
+              )}
+
               <div className="relative">
                 <label className="label">Password</label>
                 <input
