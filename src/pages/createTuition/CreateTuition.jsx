@@ -17,6 +17,18 @@ const CreateTuition = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
+    data.budget = Number(data.budget);
+    axiosSecure
+      .post("/create-tuition", data)
+      .then((res) => console.log(res.data));
+    Swal.fire({
+      icon: "success",
+      title: "Tuition Posted Successfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    reset();
+    navigate("/dashboard/tuitions");
   };
   return (
     <div className="w-full min-h-[calc(100vh-40px)] flex justify-center items-center bg-gray-50 p-4">
