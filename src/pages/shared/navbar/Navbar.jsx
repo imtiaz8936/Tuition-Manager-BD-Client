@@ -43,15 +43,13 @@ const Navbar = () => {
       >
         <li>Contact</li>
       </NavLink>
-      {user ? (
+      {user && (
         <NavLink
           to="/dashboard"
           className={({ isActive }) => `${isActive ? "active-link" : ""}`}
         >
           <li>Dashboard</li>
         </NavLink>
-      ) : (
-        ""
       )}
     </>
   );

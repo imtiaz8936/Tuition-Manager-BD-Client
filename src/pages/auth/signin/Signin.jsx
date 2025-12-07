@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router";
 import { IoEyeOff } from "react-icons/io5";
 import { FaEye } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 const Signin = () => {
   const {
@@ -14,16 +15,34 @@ const Signin = () => {
     formState: { errors },
   } = useForm();
   const [show, setShow] = useState(false);
-  const { signIn, setUser } = useAuth();
+  const { signIn, setUser, userSignInWithGoogle } = useAuth();
   const navigate = useNavigate();
+
   const handleSignin = async (data) => {
     const { email, password } = data;
-
     await signIn(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         setUser(user);
         console.log(user);
+        Swal.fire({
+          icon: "success",
+          title: "SignIn Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
+
+  const handleGoogleSignin = () => {
+    userSignInWithGoogle()
+      .then((userCredential) => {
+        console.log(userCredential.user);
+        setUser(userCredential.user);
         Swal.fire({
           icon: "success",
           title: "SignIn Successful",
@@ -125,9 +144,10 @@ const Signin = () => {
           </div>
           <button
             type="button"
+            onClick={handleGoogleSignin}
             className="flex items-center justify-center gap-3 btn btn-neutral mt-2 text-[16px] px-5 py-2 rounded-md w-full font-semibold hover:text-black hover:bg-gray-100 transition-colors cursor-pointer"
           >
-            {/* <FcGoogle size={20}></FcGoogle> Google */} Google
+            <FcGoogle size={20}></FcGoogle> Google
           </button>
         </div>
       </div>

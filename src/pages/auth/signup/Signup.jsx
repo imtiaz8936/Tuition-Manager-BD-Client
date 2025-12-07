@@ -7,6 +7,7 @@ import useAuth from "../../../hooks/useAuth";
 import { imageUpload } from "../../../utils";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { FcGoogle } from "react-icons/fc";
 
 const Signup = () => {
   const {
@@ -15,7 +16,8 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
   const [show, setShow] = useState(false);
-  const { createUser, updateUserProfile, setUser } = useAuth();
+  const { createUser, updateUserProfile, setUser, userSignInWithGoogle } =
+    useAuth();
   const navigate = useNavigate();
 
   const handleSignup = async (data) => {
@@ -43,6 +45,24 @@ const Signup = () => {
           .catch((error) => {
             toast.error(error);
           });
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
+
+  const handleGoogleSignin = () => {
+    userSignInWithGoogle()
+      .then((userCredential) => {
+        console.log(userCredential.user);
+        setUser(userCredential.user);
+        Swal.fire({
+          icon: "success",
+          title: "SignIn Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
       })
       .catch((error) => {
         toast.error(error);
@@ -168,9 +188,10 @@ const Signup = () => {
 
           <button
             type="button"
+            onClick={handleGoogleSignin}
             className="flex items-center justify-center gap-3 btn btn-neutral mt-2 text-[16px] px-5 py-2 rounded-md w-full font-semibold hover:text-black hover:bg-gray-100 transition-colors cursor-pointer"
           >
-            {/* <FcGoogle size={20}></FcGoogle> Google */} Google
+            <FcGoogle size={20}></FcGoogle> Google
           </button>
         </div>
       </div>
