@@ -1,5 +1,5 @@
 import React from "react";
-import { FaChalkboardTeacher, FaHome } from "react-icons/fa";
+import { FaChalkboardTeacher, FaHome, FaPlusCircle } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { Link } from "react-router";
 
@@ -25,13 +25,23 @@ const Sidebar = () => {
               <span className="is-drawer-close:hidden">Homepage</span>
             </Link>
           </li>
+          <li>
+            <Link
+              to="/dashboard/post-tuition"
+              className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+              data-tip="Post Tuition"
+            >
+              <FaPlusCircle size={20} />
+              <span className="is-drawer-close:hidden">Post Tuition</span>
+            </Link>
+          </li>
 
           {/* our dashboard links */}
           <li>
             <Link
               className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
               data-tip="Tuitions"
-              to="/dashboard/my-parcels"
+              to="/dashboard/tuitions"
             >
               <FaChalkboardTeacher size={20} />
               <span className="is-drawer-close:hidden">Tuitions</span>
