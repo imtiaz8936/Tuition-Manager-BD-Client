@@ -8,6 +8,7 @@ import { imageUpload } from "../../../utils";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Signup = () => {
   const {
@@ -19,13 +20,14 @@ const Signup = () => {
   const { createUser, updateUserProfile, setUser, userSignInWithGoogle } =
     useAuth();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   const handleSignup = async (data) => {
     const { name, image, email, password } = data;
-    console.log({ name, image, email, password });
     const imageFile = image[0];
     const photo = await imageUpload(imageFile);
-    console.log(photo);
+    data.photoURL = photo;
+    delete data.image;
     console.log(data);
 
     await createUser(email, password)
@@ -34,6 +36,9 @@ const Signup = () => {
           .then(() => {
             const user = userCredential.user;
             setUser(user);
+            axiosSecure.post("/signup", data).then((res) => {
+              console.log("after saving parcel", res.data);
+            });
             Swal.fire({
               icon: "success",
               title: "SignUp Successful",
