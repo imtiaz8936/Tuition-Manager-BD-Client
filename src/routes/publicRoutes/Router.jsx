@@ -6,6 +6,7 @@ import Signup from "../../pages/auth/signup/Signup";
 import Signin from "../../pages/auth/signin/Signin";
 import DashboardLayout from "../../layouts/dashboardLayout/DashboardLayout";
 import CreateTuition from "../../pages/createTuition/CreateTuition";
+import PrivateRoutes from "../privateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -28,7 +29,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoutes>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoutes>
+    ),
     children: [
       {
         index: true,
