@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
 
 const CreateTuition = () => {
   const {
@@ -12,6 +13,7 @@ const CreateTuition = () => {
     reset,
   } = useForm();
 
+  const { user } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
 
@@ -41,6 +43,40 @@ const CreateTuition = () => {
           {/* Row 1: Subject (L) / Class (R) */}
           <div className="space-y-2">
             <label
+              htmlFor="email"
+              className="block text-gray-600 font-medium mb-1"
+            >
+              Email
+            </label>
+            <input
+              id="email"
+              type="text"
+              disabled={true}
+              value={user.email}
+              className="w-full px-4 py-3 text-gray-800 border border-lime-300 rounded-md focus:outline-lime-500 cursor-not-allowed"
+              {...register("email")}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label
+              htmlFor="name"
+              className="block text-gray-600 font-medium mb-1"
+            >
+              Name
+            </label>
+            <input
+              id="name"
+              type="text"
+              disabled={true}
+              value={user.displayName}
+              className="w-full px-4 py-3 text-gray-800 border border-lime-300 rounded-md focus:outline-lime-500 cursor-not-allowed"
+              {...register("name")}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label
               htmlFor="subject"
               className="block text-gray-600 font-medium mb-1"
             >
@@ -66,6 +102,7 @@ const CreateTuition = () => {
             )}
           </div>
 
+          {/* Row 2: Description (L) / Location (R) -> both same height */}
           <div className="space-y-2">
             <label
               htmlFor="class"
@@ -95,7 +132,6 @@ const CreateTuition = () => {
             )}
           </div>
 
-          {/* Row 2: Description (L) / Location (R) -> both same height */}
           <div className="space-y-2">
             <label
               htmlFor="description"
