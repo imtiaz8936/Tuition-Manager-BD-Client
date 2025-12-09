@@ -7,6 +7,7 @@ import Signin from "../../pages/auth/signin/Signin";
 import DashboardLayout from "../../layouts/dashboardLayout/DashboardLayout";
 import CreateTuition from "../../pages/createTuition/CreateTuition";
 import PrivateRoutes from "../privateRoute/PrivateRoute";
+import ShowTutorTuitions from "../../pages/showTutorTuitions/ShowTutorTuitions";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/my-tuitions",
         element: <Tuitions></Tuitions>,
+      },
+      {
+        path: "/dashboard/tuitions",
+        element: <ShowTutorTuitions></ShowTutorTuitions>,
       },
       {
         path: "/dashboard/post-tuition",

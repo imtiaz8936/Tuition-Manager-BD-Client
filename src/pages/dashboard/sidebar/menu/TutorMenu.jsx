@@ -44,7 +44,7 @@ const TutorMenu = () => {
           <Link
             className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
             data-tip="Available Tuitions"
-            to="/dashboard/my-tuitions"
+            to="/dashboard/tuitions"
           >
             <FaChalkboardTeacher size={20} />
             <span className="is-drawer-close:hidden">Available Tuitions</span>
