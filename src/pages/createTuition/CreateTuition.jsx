@@ -152,6 +152,30 @@ const CreateTuition = () => {
                 {errors.description.message}
               </p>
             )}
+
+            <div className="space-y-2 mt-4">
+              <label
+                htmlFor="budget"
+                className="block text-gray-600 font-medium mb-1"
+              >
+                Budget
+              </label>
+              <input
+                id="budget"
+                type="text"
+                placeholder="Enter Your Budget"
+                className="w-full px-4 py-3 border border-lime-300 rounded-md focus:outline-lime-500"
+                {...register("budget", {
+                  required: "Budget is required",
+                  min: { value: 0, message: "Budget must be positive" },
+                })}
+              />
+              {errors.budget && (
+                <p className="text-xs text-red-500 mt-1">
+                  {errors.budget.message}
+                </p>
+              )}
+            </div>
           </div>
 
           <div className="space-y-2">
@@ -172,32 +196,68 @@ const CreateTuition = () => {
                 {errors.location.message}
               </p>
             )}
-          </div>
 
-          {/* Row 3: Budget spans both columns so it doesn't break vertical rhythm */}
-          <div className="lg:col-span-2 space-y-2">
-            <label
-              htmlFor="budget"
-              className="block text-gray-600 font-medium mb-1"
-            >
-              Budget
-            </label>
-            <input
-              id="budget"
-              type="text"
-              placeholder="Enter Your Budget"
-              className="w-full px-4 py-3 border border-lime-300 rounded-md focus:outline-lime-500"
-              {...register("budget", {
-                required: "Budget is required",
-                min: { value: 0, message: "Budget must be positive" },
-              })}
-            />
-            {errors.budget && (
-              <p className="text-xs text-red-500 mt-1">
-                {errors.budget.message}
-              </p>
-            )}
+            <div className="space-y-2 mt-4">
+              <label
+                htmlFor="phone"
+                className="block text-gray-600 font-medium mb-1"
+              >
+                Phone
+              </label>
+              <input
+                id="phone"
+                type="text"
+                placeholder="Enter Your Phone Number"
+                className="w-full px-4 py-3 border border-lime-300 rounded-md focus:outline-lime-500"
+                {...register("phone", {
+                  required: "Phone is required",
+                  minLength: {
+                    value: 11,
+                    message: "Phone number cannot less than 11 digits",
+                  },
+                  maxLength: {
+                    value: 11,
+                    message: "Phone number cannot more than 11 digits",
+                  },
+                })}
+              />
+              {errors.phone && (
+                <p className="text-xs text-red-500 mt-1">
+                  {errors.phone.message}
+                </p>
+              )}
+            </div>
           </div>
+        </div>
+
+        {/* Budget Condition */}
+        <div className="space-y-2 mt-8">
+          <label
+            htmlFor="budgetCondition"
+            className="block text-gray-600 font-medium mb-1"
+          >
+            Budget Condition
+          </label>
+          <select
+            id="class"
+            className="w-full px-4 py-3 border border-lime-300 rounded-md bg-white focus:outline-lime-500"
+            {...register("budgetCondition", {
+              required: "Budget condition is required",
+            })}
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Select Budget Condition
+            </option>
+
+            <option value="Negotiable">Negotiable</option>
+            <option value="Non-Negotiable">Non-Negotiable</option>
+          </select>
+          {errors.budgetCondition && (
+            <p className="text-xs text-red-500 mt-1">
+              {errors.budgetCondition.message}
+            </p>
+          )}
         </div>
 
         {/* Submit Button */}

@@ -30,11 +30,13 @@ const TuitionCard = ({ tuition }) => {
 
       {/* Contact (Static) */}
       <p className="text-gray-700 font-medium mb-1">
-        Contact: <span className="text-blue-600">01700000000</span>
+        Contact: <span className="text-blue-600">{tuition.phone}</span>
       </p>
 
       {/* Negotiable */}
-      <p className="text-green-600 font-semibold text-sm">Negotiable</p>
+      <p className="text-green-600 font-semibold text-sm">
+        {tuition.budgetCondition}
+      </p>
 
       {/* Update & Delete Buttons */}
       <div className="flex justify-between mt-5">
