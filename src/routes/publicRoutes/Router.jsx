@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
         element: <p>dashboard</p>,
       },
       {
-        path: "/dashboard/tuitions",
+        path: "/dashboard/my-tuitions",
         element: <Tuitions></Tuitions>,
       },
       {
