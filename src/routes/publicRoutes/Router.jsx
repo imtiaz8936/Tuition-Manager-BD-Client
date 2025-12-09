@@ -8,6 +8,7 @@ import DashboardLayout from "../../layouts/dashboardLayout/DashboardLayout";
 import CreateTuition from "../../pages/createTuition/CreateTuition";
 import PrivateRoutes from "../privateRoute/PrivateRoute";
 import ShowTutorTuitions from "../../pages/showTutorTuitions/ShowTutorTuitions";
+import TuitionDetails from "../../pages/tuitions/TuitionDetails";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
         element: <p>dashboard</p>,
       },
       {
+        path: "/dashboard/post-tuition",
+        element: <CreateTuition></CreateTuition>,
+      },
+      {
         path: "/dashboard/my-tuitions",
         element: <Tuitions></Tuitions>,
       },
@@ -49,8 +54,12 @@ export const router = createBrowserRouter([
         element: <ShowTutorTuitions></ShowTutorTuitions>,
       },
       {
-        path: "/dashboard/post-tuition",
-        element: <CreateTuition></CreateTuition>,
+        path: "/dashboard/tuition-details/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/tuition-details/${params.id}`).then(
+            (res) => res.json()
+          ),
+        element: <TuitionDetails></TuitionDetails>,
       },
     ],
   },

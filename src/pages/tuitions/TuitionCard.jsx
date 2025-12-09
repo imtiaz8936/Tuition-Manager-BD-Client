@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
-import useRole from "../../hooks/useRole";
 
 const TuitionCard = ({ tuition }) => {
-  const { role } = useRole();
   return (
     <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition">
       {/* Subject */}
@@ -16,55 +14,25 @@ const TuitionCard = ({ tuition }) => {
         Class: <span className="font-medium">{tuition.class}</span>
       </p>
 
-      {/* Budget */}
-      <p className="text-gray-700 font-medium mb-2">
-        Budget:{" "}
-        <span className="text-lime-600 font-semibold">৳{tuition.budget}</span>
-      </p>
-
       {/* Description */}
       <p className="text-gray-700 text-sm mb-3">{tuition.description}</p>
 
-      {/* Location */}
-      <p className="text-gray-600 text-sm mb-3">
-        <span className="font-medium">Location:</span> {tuition.location}
-      </p>
-
-      {/* Contact (Static) */}
-      <p className="text-gray-700 font-medium mb-1">
-        Contact: <span className="text-blue-600">{tuition.phone}</span>
-      </p>
-
       {/* Negotiable */}
-      <p className="text-green-600 font-semibold text-sm">
-        {tuition.budgetCondition}
-      </p>
+      <div className="flex justify-between items-center">
+        <p className="text-green-600 font-semibold text-sm">
+          {tuition.budgetCondition}
+        </p>
+        <p className="text-green-600 font-semibold text-sm">{tuition.status}</p>
+      </div>
 
-      {/* Update, Delete & Apply Buttons */}
-      {role === "Tutor" ? (
-        <div className="mt-5">
-          <Link>
-            <button className="w-full bg-yellow-600 hover:bg-yellow-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200">
-              Apply
-            </button>
-          </Link>
-        </div>
-      ) : (
-        <div className="flex justify-between mt-5">
-          <Link>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200">
-              Update
-            </button>
-          </Link>
-
-          <button
-            // onClick={handleDeleteTuition}
-            className="bg-red-600 hover:bg-red-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200"
-          >
-            Delete
+      {/* View Details Buttons */}
+      <div className="mt-5">
+        <Link to={`/dashboard/tuition-details/${tuition._id}`}>
+          <button className="w-full bg-yellow-600 hover:bg-yellow-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200">
+            View Details
           </button>
-        </div>
-      )}
+        </Link>
+      </div>
     </div>
   );
 };

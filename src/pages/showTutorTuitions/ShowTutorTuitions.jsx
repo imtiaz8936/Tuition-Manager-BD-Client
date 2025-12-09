@@ -16,8 +16,6 @@ const ShowTutorTuitions = () => {
     },
   });
 
-  console.log(tuitions);
-
   return (
     <div className="w-full max-w-7xl mx-auto p-4">
       tutor tuitions
