@@ -1,17 +1,12 @@
 import React from "react";
-import {
-  FaChalkboardTeacher,
-  FaHome,
-  FaPlusCircle,
-  FaSignOutAlt,
-} from "react-icons/fa";
+import { FaChalkboardTeacher, FaHome, FaSignOutAlt } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 
-const StudentMenu = () => {
+const TutorMenu = () => {
   const { logOut } = useAuth();
   const navigate = useNavigate();
   const handleSignout = () => {
@@ -43,26 +38,16 @@ const StudentMenu = () => {
             <span className="is-drawer-close:hidden">Homepage</span>
           </Link>
         </li>
-        <li>
-          <Link
-            to="/dashboard/post-tuition"
-            className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-            data-tip="Post Tuition"
-          >
-            <FaPlusCircle size={20} />
-            <span className="is-drawer-close:hidden">Post Tuition</span>
-          </Link>
-        </li>
 
         {/* our dashboard links */}
         <li>
           <Link
             className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-            data-tip="My Tuitions"
+            data-tip="Available Tuitions"
             to="/dashboard/my-tuitions"
           >
             <FaChalkboardTeacher size={20} />
-            <span className="is-drawer-close:hidden">My Tuitions</span>
+            <span className="is-drawer-close:hidden">Available Tuitions</span>
           </Link>
         </li>
 
@@ -91,4 +76,4 @@ const StudentMenu = () => {
   );
 };
 
-export default StudentMenu;
+export default TutorMenu;

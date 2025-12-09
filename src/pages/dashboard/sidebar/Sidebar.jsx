@@ -2,6 +2,7 @@ import React from "react";
 import StudentMenu from "./menu/StudentMenu";
 import useRole from "../../../hooks/useRole";
 import { DotLoader } from "react-spinners";
+import TutorMenu from "./menu/TutorMenu";
 
 const Sidebar = () => {
   const { role, isRoleLoading } = useRole();
@@ -25,6 +26,7 @@ const Sidebar = () => {
       <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
         {/* Role Based Menu */}
         {role === "Student" && <StudentMenu></StudentMenu>}
+        {role === "Tutor" && <TutorMenu></TutorMenu>}
       </div>
     </div>
   );

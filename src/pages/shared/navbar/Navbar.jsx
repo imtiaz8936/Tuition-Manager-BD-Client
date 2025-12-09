@@ -137,7 +137,6 @@ const Navbar = () => {
                 <p className="text-red-500 text-[16px]">{user.email}</p>
               </div>
               <Link
-                to="/signin"
                 onClick={handleSignout}
                 className="btn btn-primary w-full text-[16px] text-black
                                 flex flex-inline justify-center items-center"
