@@ -5,7 +5,6 @@ import { useQuery } from "@tanstack/react-query";
 import TuitionCard from "../tuitions/TuitionCard";
 
 const ShowTutorTuitions = () => {
-  //   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const { data: tuitions = [] } = useQuery({

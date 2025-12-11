@@ -10,6 +10,7 @@ import PrivateRoutes from "../privateRoute/PrivateRoute";
 import ShowTutorTuitions from "../../pages/showTutorTuitions/ShowTutorTuitions";
 import TuitionDetails from "../../pages/tuitions/TuitionDetails";
 import TutorApplications from "../../pages/showTutorTuitions/TutorApplications";
+import ShowStudentTutorApplications from "../../pages/tuitions/ShowStudentTutorApplications";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/my-tuitions",
         element: <Tuitions></Tuitions>,
+      },
+      {
+        path: "/dashboard/tutor-applications",
+        element: <ShowStudentTutorApplications></ShowStudentTutorApplications>,
       },
       {
         path: "/dashboard/tuitions",

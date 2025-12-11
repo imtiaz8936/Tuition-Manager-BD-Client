@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router";
 import useAuth from "../../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { LuFileCheck } from "react-icons/lu";
 
 const StudentMenu = () => {
   const { logOut } = useAuth();
@@ -63,6 +64,16 @@ const StudentMenu = () => {
           >
             <FaChalkboardTeacher size={20} />
             <span className="is-drawer-close:hidden">My Tuitions</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+            data-tip="Tutor Applications"
+            to="/dashboard/tutor-applications"
+          >
+            <LuFileCheck size={20} />
+            <span className="is-drawer-close:hidden">Tutor Applications</span>
           </Link>
         </li>
 

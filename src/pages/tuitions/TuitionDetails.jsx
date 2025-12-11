@@ -27,6 +27,7 @@ const TuitionDetails = () => {
   };
 
   const onSubmit = (data) => {
+    data.student_email = result.email;
     data.tuitionId = result._id;
     axiosSecure
       .post("/tutor-application", data)
@@ -37,7 +38,7 @@ const TuitionDetails = () => {
       title:
         "Application Submitted Successfully\nPlease, Wait For Student Approval",
       showConfirmButton: false,
-      timer: 2000,
+      timer: 3000,
     });
     navigate("/dashboard/my-applications");
   };
