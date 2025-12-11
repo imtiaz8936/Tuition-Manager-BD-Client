@@ -1,6 +1,22 @@
 import React from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const StudentApplicationCard = ({ application }) => {
+  const axiosSecure = useAxiosSecure();
+  const handlePayment = async () => {
+    const paymentInfo = {
+      salary: application.salary,
+      email: application.email,
+      name: application.name,
+      tuitionId: application.tuitionId,
+    };
+
+    const res = await axiosSecure.post(
+      "/payment-checkout-session",
+      paymentInfo
+    );
+    window.location.href = res.data.url;
+  };
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 w-full hover:shadow-md transition">
       {/* Name */}
@@ -46,7 +62,7 @@ const StudentApplicationCard = ({ application }) => {
           ${
             application.status === "Pending"
               ? "text-yellow-600"
-              : application.status === "Accepted"
+              : application.status === "Approved"
               ? "text-green-600"
               : "text-red-600"
           }`}
@@ -55,8 +71,11 @@ const StudentApplicationCard = ({ application }) => {
       </p>
 
       <div className="grid sm:grid-cols-2 gap-4 mt-5">
-        <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200">
-          Approve
+        <button
+          onClick={handlePayment}
+          className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200"
+        >
+          Approve & Pay
         </button>
 
         <button
