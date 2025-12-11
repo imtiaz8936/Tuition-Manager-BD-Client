@@ -91,7 +91,7 @@ const Signin = () => {
               <div className="relative">
                 <label className="label">Password</label>
                 <input
-                  type="password"
+                  type={show ? "text" : "password"}
                   {...register("password", {
                     required: true,
                     minLength: {

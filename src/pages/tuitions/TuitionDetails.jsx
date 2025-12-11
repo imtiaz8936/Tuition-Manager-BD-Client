@@ -1,14 +1,18 @@
 import React, { useRef } from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import useRole from "../../hooks/useRole";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const TuitionDetails = () => {
   const result = useLoaderData();
   const data = result;
   const { role } = useRole();
   const modalRef = useRef();
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -23,7 +27,19 @@ const TuitionDetails = () => {
   };
 
   const onSubmit = (data) => {
+    data.tuitionId = result._id;
+    axiosSecure
+      .post("/tutor-application", data)
+      .then((res) => console.log(res.data));
     console.log(data);
+    Swal.fire({
+      icon: "success",
+      title:
+        "Application Submitted Successfully\nPlease, Wait For Student Approval",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+    navigate("/dashboard/my-applications");
   };
   return (
     <div className="max-w-3xl mx-auto p-4">
@@ -151,7 +167,7 @@ const TuitionDetails = () => {
                 <div className="space-y-2">
                   <label
                     htmlFor="experience"
-                    experienceName="block text-gray-600 font-medium mb-1"
+                    className="block text-gray-600 font-medium mb-1"
                   >
                     Experience
                   </label>

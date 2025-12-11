@@ -1,6 +1,7 @@
 import React from "react";
 import { FaChalkboardTeacher, FaHome, FaSignOutAlt } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
+import { LuFileCheck } from "react-icons/lu";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../../../../hooks/useAuth";
 import Swal from "sweetalert2";
@@ -48,6 +49,16 @@ const TutorMenu = () => {
           >
             <FaChalkboardTeacher size={20} />
             <span className="is-drawer-close:hidden">Available Tuitions</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+            data-tip="My Applications"
+            to="/dashboard/my-applications"
+          >
+            <LuFileCheck size={20} />
+            <span className="is-drawer-close:hidden">My Applications</span>
           </Link>
         </li>
 
