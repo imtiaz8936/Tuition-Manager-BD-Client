@@ -13,6 +13,8 @@ import TutorApplications from "../../pages/showTutorTuitions/TutorApplications";
 import ShowStudentTutorApplications from "../../pages/tuitions/ShowStudentTutorApplications";
 import PaymentSuccess from "../../pages/dashboard/payment/PaymentSuccess";
 import PaymentCancelled from "../../pages/dashboard/payment/PaymentCancelled";
+import ManageUsers from "../../pages/dashboard/admin/ManageUsers";
+import ManageTuitions from "../../pages/dashboard/admin/ManageTuitions";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +82,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/payment-cancelled",
         Component: PaymentCancelled,
+      },
+      {
+        path: "/dashboard/manage-users",
+        Component: ManageUsers,
+      },
+      {
+        path: "/dashboard/manage-tuitions",
+        Component: ManageTuitions,
       },
     ],
   },
