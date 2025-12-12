@@ -1,7 +1,8 @@
 import React from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
-const StudentApplicationCard = ({ application }) => {
+const StudentApplicationCard = ({ application, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const handlePayment = async () => {
     const paymentInfo = {
@@ -17,6 +18,33 @@ const StudentApplicationCard = ({ application }) => {
       paymentInfo
     );
     window.location.href = res.data.url;
+  };
+
+  const handleRejectApplication = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, reject it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .patch(`/reject-application/${application._id}`)
+          .then((res) => {
+            if (res.data.modifiedCount) {
+              refetch();
+              Swal.fire({
+                title: "Rejected!",
+                text: "Application rejected.",
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
   };
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 w-full hover:shadow-md transition">
@@ -76,6 +104,10 @@ const StudentApplicationCard = ({ application }) => {
           <button className="bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors duration-200">
             Approved & Paid
           </button>
+        ) : application.status === "Rejected" ? (
+          <button className="bg-red-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+            Rejected
+          </button>
         ) : (
           <button
             onClick={handlePayment}
@@ -85,14 +117,15 @@ const StudentApplicationCard = ({ application }) => {
           </button>
         )}
 
-        {application.status !== "Approved" && (
-          <button
-            // onClick={handleDeleteTuition}
-            className="bg-red-600 hover:bg-red-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200"
-          >
-            Reject
-          </button>
-        )}
+        {application.status === "Rejected" ||
+          (application.status !== "Approved" && (
+            <button
+              onClick={handleRejectApplication}
+              className="bg-red-600 hover:bg-red-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200"
+            >
+              Reject
+            </button>
+          ))}
       </div>
     </div>
   );

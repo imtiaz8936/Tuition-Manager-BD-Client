@@ -8,7 +8,7 @@ const ShowStudentTutorapplications = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  const { data: applications = [] } = useQuery({
+  const { data: applications = [], refetch } = useQuery({
     queryKey: ["tuition-applications", user.email],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -24,6 +24,7 @@ const ShowStudentTutorapplications = () => {
           <StudentApplicationCard
             key={application._id}
             application={application}
+            refetch={refetch}
           ></StudentApplicationCard>
         ))}
       </div>
