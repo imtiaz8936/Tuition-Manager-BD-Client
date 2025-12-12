@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
@@ -45,23 +45,40 @@ const TutorApplicationCard = ({ application }) => {
         Contact: <span className="text-blue-600">{tuition.phone}</span>
       </p>
 
-      {/* Negotiable */}
-      <p className="text-green-600 font-semibold text-sm">
-        {application.status}
+      {/* Status */}
+      <p
+        className={`text-sm font-semibold mt-3 
+          ${
+            application.status === "Pending"
+              ? "text-yellow-600"
+              : application.status === "Approved"
+              ? "text-green-600"
+              : "text-red-600"
+          }`}
+      >
+        Status: {application.status}
       </p>
 
       {/* View Details Buttons */}
       <div className="grid sm:grid-cols-2 gap-4 mt-5">
-        <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200">
-          Update
-        </button>
+        {application.status === "Approved" ? (
+          <button className="bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+            Approved & Paid
+          </button>
+        ) : (
+          <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200">
+            Update
+          </button>
+        )}
 
-        <button
-          // onClick={handleDeleteTuition}
-          className="bg-red-600 hover:bg-red-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200"
-        >
-          Delete
-        </button>
+        {application.status !== "Approved" && (
+          <button
+            // onClick={handleDeleteTuition}
+            className="bg-red-600 hover:bg-red-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200"
+          >
+            Delete
+          </button>
+        )}
       </div>
     </div>
   );

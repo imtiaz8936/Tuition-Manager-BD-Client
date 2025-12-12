@@ -72,19 +72,27 @@ const StudentApplicationCard = ({ application }) => {
       </p>
 
       <div className="grid sm:grid-cols-2 gap-4 mt-5">
-        <button
-          onClick={handlePayment}
-          className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200"
-        >
-          Approve & Pay
-        </button>
+        {application.status === "Approved" ? (
+          <button className="bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+            Approved & Paid
+          </button>
+        ) : (
+          <button
+            onClick={handlePayment}
+            className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200"
+          >
+            Approve & Pay
+          </button>
+        )}
 
-        <button
-          // onClick={handleDeleteTuition}
-          className="bg-red-600 hover:bg-red-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200"
-        >
-          Reject
-        </button>
+        {application.status !== "Approved" && (
+          <button
+            // onClick={handleDeleteTuition}
+            className="bg-red-600 hover:bg-red-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200"
+          >
+            Reject
+          </button>
+        )}
       </div>
     </div>
   );
