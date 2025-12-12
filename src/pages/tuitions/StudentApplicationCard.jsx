@@ -9,6 +9,7 @@ const StudentApplicationCard = ({ application }) => {
       email: application.email,
       name: application.name,
       tuitionId: application.tuitionId,
+      applicationId: application._id,
     };
 
     const res = await axiosSecure.post(
