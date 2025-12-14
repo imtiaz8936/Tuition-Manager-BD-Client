@@ -19,7 +19,6 @@ const UpdateUserForm = () => {
     },
   });
   const handleUpdate = (data) => {
-    console.log(data);
     Swal.fire({
       title: "Are you sure?",
       icon: "warning",

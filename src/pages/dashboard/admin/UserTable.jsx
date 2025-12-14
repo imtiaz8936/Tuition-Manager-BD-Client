@@ -1,8 +1,35 @@
 import React from "react";
 import { FaEdit, FaTrash, FaUserShield } from "react-icons/fa";
 import { Link } from "react-router";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const UserTable = ({ user }) => {
+const UserTable = ({ user, refetch }) => {
+  const axiosSecure = useAxiosSecure();
+  const handleDeleteUser = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/delete-user-account/${user._id}`).then((res) => {
+          if (res.data.deletedCount) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "User account deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
   return (
     <tr className="border-b hover:bg-gray-50 transition">
       {/* User Image + Name */}
@@ -41,7 +68,10 @@ const UserTable = ({ user }) => {
           <FaUserShield />
         </Link> */}
 
-        <Link className="text-red-600 hover:text-red-800">
+        <Link
+          onClick={handleDeleteUser}
+          className="text-red-600 hover:text-red-800"
+        >
           <FaTrash />
         </Link>
       </td>

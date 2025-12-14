@@ -210,7 +210,7 @@ const CreateTuition = () => {
                 placeholder="Enter Your Phone Number"
                 className="w-full px-4 py-3 border border-lime-300 rounded-md focus:outline-lime-500"
                 {...register("phone", {
-                  required: "Phone is required",
+                  required: "Phone number is required",
                   minLength: {
                     value: 11,
                     message: "Phone number cannot less than 11 digits",

@@ -157,7 +157,17 @@ const Signup = () => {
               <label className="label">Phone</label>
               <input
                 type="tel"
-                {...register("phone", { required: "Phone number is required" })}
+                {...register("phone", {
+                  required: "Phone number is required",
+                  minLength: {
+                    value: 11,
+                    message: "Phone number cannot less than 11 digits",
+                  },
+                  maxLength: {
+                    value: 11,
+                    message: "Phone number cannot more than 11 digits",
+                  },
+                })}
                 className="input"
                 placeholder="Enter Your Phone Number"
               />
