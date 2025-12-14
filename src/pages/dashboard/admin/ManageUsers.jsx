@@ -18,6 +18,7 @@ const ManageUsers = () => {
 
   return (
     <div className="w-full min-h-screen bg-gray-100 p-4 md:p-8">
+      <title>Tuition-ManagerBD | User Management</title>
       <h1 className="text-2xl font-bold text-gray-800 mb-6">User Management</h1>
 
       <div className="overflow-x-auto bg-white shadow-md rounded-lg">
