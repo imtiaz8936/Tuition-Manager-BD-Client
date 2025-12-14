@@ -1,9 +1,10 @@
 import React from "react";
 import { FaEdit, FaTrash, FaUserShield } from "react-icons/fa";
+import { Link } from "react-router";
 
 const UserTable = ({ user }) => {
   return (
-    <tr key={user._id} className="border-b hover:bg-gray-50 transition">
+    <tr className="border-b hover:bg-gray-50 transition">
       {/* User Image + Name */}
       <td className="flex items-center gap-3 px-4 py-3">
         <img
@@ -29,17 +30,20 @@ const UserTable = ({ user }) => {
 
       {/* Action Buttons */}
       <td className="px-4 py-3 flex justify-center gap-4 text-lg">
-        <button className="text-blue-600 hover:text-blue-800">
+        <Link
+          to={`/dashboard/update-user-information/${user._id}`}
+          className="text-blue-600 hover:text-blue-800"
+        >
           <FaEdit />
-        </button>
+        </Link>
 
-        <button className="text-purple-600 hover:text-purple-800">
+        {/* <Link className="text-purple-600 hover:text-purple-800">
           <FaUserShield />
-        </button>
+        </Link> */}
 
-        <button className="text-red-600 hover:text-red-800">
+        <Link className="text-red-600 hover:text-red-800">
           <FaTrash />
-        </button>
+        </Link>
       </td>
     </tr>
   );
