@@ -1,7 +1,9 @@
-import { FaUserAlt, FaDollarSign } from "react-icons/fa";
+import { FaUserAlt, FaDollarSign, FaChalkboardTeacher } from "react-icons/fa";
 import { BsFillCartPlusFill, BsFillHouseDoorFill } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { HiOutlineCurrencyBangladeshi } from "react-icons/hi";
+import PaymentHistory from "../payment/PaymentHistory";
 
 const AdminStatistics = () => {
   const axiosSecure = useAxiosSecure();
@@ -30,7 +32,7 @@ const AdminStatistics = () => {
             <div
               className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-orange-600 to-orange-400 text-white shadow-orange-500/40`}
             >
-              <FaDollarSign className="w-6 h-6 text-white" />
+              <HiOutlineCurrencyBangladeshi size={40} className="text-white" />
             </div>
             <div className="p-4 text-right">
               <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
@@ -46,11 +48,11 @@ const AdminStatistics = () => {
             <div
               className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-blue-600 to-blue-400 text-white shadow-blue-500/40`}
             >
-              <BsFillCartPlusFill className="w-6 h-6 text-white" />
+              <FaChalkboardTeacher size={40} className="text-white" />
             </div>
             <div className="p-4 text-right">
               <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                Total Tuitions
+                Total Approved Tuitions
               </p>
               <h4 className="block antialiased tracking-normal font-sans text-4xl font-semibold leading-snug text-blue-gray-900">
                 {stats.totalTuitions}
@@ -62,7 +64,7 @@ const AdminStatistics = () => {
             <div
               className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-pink-600 to-pink-400 text-white shadow-pink-500/40`}
             >
-              <BsFillHouseDoorFill className="w-6 h-6 text-white" />
+              <BsFillHouseDoorFill size={40} className="text-white" />
             </div>
             <div className="p-4 text-right">
               <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
@@ -78,7 +80,7 @@ const AdminStatistics = () => {
             <div
               className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-green-600 to-green-400 text-white shadow-green-500/40`}
             >
-              <FaUserAlt className="w-6 h-6 text-white" />
+              <FaUserAlt size={40} className="text-white" />
             </div>
             <div className="p-4 text-right">
               <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
@@ -90,6 +92,8 @@ const AdminStatistics = () => {
             </div>
           </div>
         </div>
+
+        <PaymentHistory></PaymentHistory>
 
         <div className="mb-4 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
           {/*Sales Bar Chart */}
