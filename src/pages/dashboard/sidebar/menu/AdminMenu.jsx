@@ -68,10 +68,10 @@ const AdminMenu = () => {
           <Link
             to="/dashboard/approved-tuitions"
             className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-            data-tip="Manage Tuitions"
+            data-tip="Approved Tuitions"
           >
             <MdVerifiedUser size={20} />
-            <span className="is-drawer-close:hidden">Manage Tuitions</span>
+            <span className="is-drawer-close:hidden">Approved Tuitions</span>
           </Link>
         </li>
 
