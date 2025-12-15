@@ -43,6 +43,31 @@ const TuitionDetails = () => {
     });
     navigate("/dashboard/my-applications");
   };
+
+  const handleDeleteTuition = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/delete-tuition/${id}`).then((res) => {
+          if (res.data.deletedCount) {
+            navigate("/dashboard/my-tuitions");
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your tuition has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
   return (
     <div className="max-w-3xl mx-auto p-4">
       <div className="bg-white shadow-lg rounded-xl p-6 border">
@@ -80,13 +105,13 @@ const TuitionDetails = () => {
         ) : (
           <div className="grid sm:grid-cols-2 gap-4 mt-5">
             <Link to={`/dashboard/update-tuition/${id}`}>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200">
+              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200">
                 Update
               </button>
             </Link>
 
             <button
-              // onClick={handleDeleteTuition}
+              onClick={handleDeleteTuition}
               className="bg-red-600 hover:bg-red-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200"
             >
               Delete

@@ -26,11 +26,12 @@ const CreateTuition = () => {
     Swal.fire({
       icon: "success",
       title: "Tuition Posted Successfully",
+      text: "Wait for admin approval",
       showConfirmButton: false,
       timer: 1500,
     });
     reset();
-    navigate("/dashboard/tuitions");
+    navigate("/dashboard/my-tuitions");
   };
   return (
     <div className="w-full min-h-[calc(100vh-40px)] flex justify-center items-center bg-gray-50 p-4">
