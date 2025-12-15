@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Link, useLoaderData, useNavigate } from "react-router";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router";
 import useRole from "../../hooks/useRole";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 
 const TuitionDetails = () => {
   const result = useLoaderData();
+  const { id } = useParams();
   const data = result;
   const { role } = useRole();
   const modalRef = useRef();
@@ -78,9 +79,11 @@ const TuitionDetails = () => {
           </div>
         ) : (
           <div className="grid sm:grid-cols-2 gap-4 mt-5">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200">
-              Update
-            </button>
+            <Link to={`/dashboard/update-tuition/${id}`}>
+              <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 px-4 rounded-lg cursor-pointer transition-colors duration-200">
+                Update
+              </button>
+            </Link>
 
             <button
               // onClick={handleDeleteTuition}

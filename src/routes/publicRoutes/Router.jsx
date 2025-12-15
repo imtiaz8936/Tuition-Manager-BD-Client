@@ -19,6 +19,7 @@ import UpdateUserForm from "../../pages/dashboard/admin/UpdateUserForm";
 import ApprovedTuitions from "../../pages/dashboard/admin/ApprovedTuitions";
 import DashboardHome from "../../pages/dashboard/dashboardHome/DashboardHome";
 import PaymentHistory from "../../pages/dashboard/payment/PaymentHistory";
+import TuitionUpdate from "../../pages/tuitions/TuitionUpdate";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/my-tuitions",
         element: <Tuitions></Tuitions>,
+      },
+      {
+        path: "/dashboard/update-tuition/:id",
+        element: <TuitionUpdate></TuitionUpdate>,
       },
       {
         path: "/dashboard/tutor-applications",
