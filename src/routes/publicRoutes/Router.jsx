@@ -18,6 +18,7 @@ import ManageTuitions from "../../pages/dashboard/admin/ManageTuitions";
 import UpdateUserForm from "../../pages/dashboard/admin/UpdateUserForm";
 import ApprovedTuitions from "../../pages/dashboard/admin/ApprovedTuitions";
 import DashboardHome from "../../pages/dashboard/dashboardHome/DashboardHome";
+import PaymentHistory from "../../pages/dashboard/payment/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/payment-cancelled",
         Component: PaymentCancelled,
+      },
+      {
+        path: "/dashboard/payment-history",
+        Component: PaymentHistory,
       },
       {
         path: "/dashboard/manage-users",

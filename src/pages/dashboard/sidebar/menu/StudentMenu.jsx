@@ -6,6 +6,7 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
+import { HiOutlineCurrencyBangladeshi } from "react-icons/hi";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../../../../hooks/useAuth";
 import Swal from "sweetalert2";
@@ -74,6 +75,16 @@ const StudentMenu = () => {
           >
             <LuFileCheck size={20} />
             <span className="is-drawer-close:hidden">Tutor Applications</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+            data-tip="Payment History"
+            to="/dashboard/payment-history"
+          >
+            <HiOutlineCurrencyBangladeshi size={20} />
+            <span className="is-drawer-close:hidden">Payment History</span>
           </Link>
         </li>
 

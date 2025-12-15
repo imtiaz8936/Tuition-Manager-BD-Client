@@ -3,11 +3,13 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
 const StudentApplicationCard = ({ application, refetch }) => {
+  console.log(application);
   const axiosSecure = useAxiosSecure();
   const handlePayment = async () => {
     const paymentInfo = {
       salary: application.salary,
       email: application.email,
+      student_email: application.student_email,
       name: application.name,
       tuitionId: application.tuitionId,
       applicationId: application._id,
