@@ -8,7 +8,6 @@ import LatestTutors from "../latestTutors/LatestTutors";
 const Home = () => {
   return (
     <div>
-      Home
       <Hero></Hero>
       <LatestTuitions></LatestTuitions>
       <LatestTutors></LatestTutors>

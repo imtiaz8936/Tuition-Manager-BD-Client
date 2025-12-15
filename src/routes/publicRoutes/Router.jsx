@@ -17,6 +17,7 @@ import ManageUsers from "../../pages/dashboard/admin/ManageUsers";
 import ManageTuitions from "../../pages/dashboard/admin/ManageTuitions";
 import UpdateUserForm from "../../pages/dashboard/admin/UpdateUserForm";
 import ApprovedTuitions from "../../pages/dashboard/admin/ApprovedTuitions";
+import DashboardHome from "../../pages/dashboard/dashboardHome/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -47,7 +48,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <p>dashboard</p>,
+        Component: DashboardHome,
       },
       {
         path: "/dashboard/post-tuition",
