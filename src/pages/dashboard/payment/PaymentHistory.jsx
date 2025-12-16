@@ -14,7 +14,7 @@ const PaymentHistory = () => {
     queryFn: async () => {
       if (role !== "Admin") {
         const res = await axiosSecure.get(
-          `/payment-history?email=${user.email}`
+          `/payment-history?email=${user.email}&role=${role}`
         );
         return res.data;
       } else {
@@ -35,7 +35,7 @@ const PaymentHistory = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Payee Name</th>
+              {role === "Tutor" ? <th>Payer Email</th> : <th>Payee Name</th>}
               {role === "Admin" && <th>Payer Email</th>}
               <th>Amount</th>
               <th>Paid Time</th>
@@ -46,7 +46,11 @@ const PaymentHistory = () => {
             {payments.map((payment, index) => (
               <tr key={payment._id}>
                 <th>{index + 1}</th>
-                <td>{payment.payee_name}</td>
+                {role === "Tutor" ? (
+                  <td>{payment.payer_email}</td>
+                ) : (
+                  <td>{payment.payee_name}</td>
+                )}
                 {role === "Admin" && <td>{payment.payer_email}</td>}
                 <td>৳ {payment.amount}</td>
                 <td>

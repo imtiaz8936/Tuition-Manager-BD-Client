@@ -1,23 +1,29 @@
-import { FaUserAlt, FaChalkboardTeacher, FaUserGraduate } from "react-icons/fa";
+import { FaChalkboardTeacher, FaFileAlt, FaCheckCircle } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { HiOutlineCurrencyBangladeshi } from "react-icons/hi";
-import PaymentHistory from "../payment/PaymentHistory";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import PaymentHistory from "../dashboard/payment/PaymentHistory";
+import useAuth from "../../hooks/useAuth";
 
-const AdminStatistics = () => {
+const TutorStatistics = () => {
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  const { data: totalRevenue = {} } = useQuery({
-    queryKey: ["totalRevenue"],
+  const { data: totalEarnings = {} } = useQuery({
+    queryKey: ["totalEarnings"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/total-revenue/admin");
+      const res = await axiosSecure.get(
+        `/total-earnings/tutor?email=${user?.email}`
+      );
       return res.data;
     },
   });
   const { data: stats = {} } = useQuery({
-    queryKey: ["totalStats"],
+    queryKey: ["totalStatsTutor"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/dashboard-stats/admin");
+      const res = await axiosSecure.get(
+        `/dashboard-stats/tutor?email=${user?.email}`
+      );
       return res.data;
     },
   });
@@ -35,10 +41,10 @@ const AdminStatistics = () => {
             </div>
             <div className="p-4 text-right">
               <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                Total Revenue
+                Total Earnings
               </p>
               <h4 className="block antialiased tracking-normal font-sans text-4xl font-semibold leading-snug text-blue-gray-900">
-                ৳{totalRevenue.totalRevenue}
+                ৳{totalEarnings.totalRevenue}
               </h4>
             </div>
           </div>
@@ -51,10 +57,10 @@ const AdminStatistics = () => {
             </div>
             <div className="p-4 text-right">
               <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                Approved Tuitions
+                Available Tuitions
               </p>
               <h4 className="block antialiased tracking-normal font-sans text-4xl font-semibold leading-snug text-blue-gray-900">
-                {stats.totalTuitions}
+                {stats.availableTuitions}
               </h4>
             </div>
           </div>
@@ -63,14 +69,14 @@ const AdminStatistics = () => {
             <div
               className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-pink-600 to-pink-400 text-white shadow-pink-500/40`}
             >
-              <FaUserGraduate size={40} className="text-white" />
+              <FaCheckCircle size={40} className="text-white" />
             </div>
             <div className="p-4 text-right">
               <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                Total Tutors
+                Approved Tuitions
               </p>
               <h4 className="block antialiased tracking-normal font-sans text-4xl font-semibold leading-snug text-blue-gray-900">
-                {stats.totalTutors}
+                {stats.approvedTuitions}
               </h4>
             </div>
           </div>
@@ -79,14 +85,14 @@ const AdminStatistics = () => {
             <div
               className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-linear-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center from-green-600 to-green-400 text-white shadow-green-500/40`}
             >
-              <FaUserAlt size={40} className="text-white" />
+              <FaFileAlt size={40} className="text-white" />
             </div>
             <div className="p-4 text-right">
               <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                Total Users
+                Total Applications
               </p>
               <h4 className="block antialiased tracking-normal font-sans text-4xl font-semibold leading-snug text-blue-gray-900">
-                {stats.totalUsers}
+                {stats.totalApplications}
               </h4>
             </div>
           </div>
@@ -109,4 +115,4 @@ const AdminStatistics = () => {
   );
 };
 
-export default AdminStatistics;
+export default TutorStatistics;
