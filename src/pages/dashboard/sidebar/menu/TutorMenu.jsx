@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router";
 import useAuth from "../../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { MdHome } from "react-icons/md";
 
 const TutorMenu = () => {
   const { logOut } = useAuth();
@@ -37,6 +38,16 @@ const TutorMenu = () => {
           >
             <FaHome size={20} />
             <span className="is-drawer-close:hidden">Homepage</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/dashboard"
+            className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+            data-tip="Dashboard Home"
+          >
+            <MdHome size={20} />
+            <span className="is-drawer-close:hidden">Dashboard Home</span>
           </Link>
         </li>
 

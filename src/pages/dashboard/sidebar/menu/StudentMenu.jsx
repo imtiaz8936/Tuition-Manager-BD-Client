@@ -12,6 +12,7 @@ import useAuth from "../../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { LuFileCheck } from "react-icons/lu";
+import { MdHome } from "react-icons/md";
 
 const StudentMenu = () => {
   const { logOut } = useAuth();
@@ -43,6 +44,16 @@ const StudentMenu = () => {
           >
             <FaHome size={20} />
             <span className="is-drawer-close:hidden">Homepage</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/dashboard"
+            className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+            data-tip="Dashboard Home"
+          >
+            <MdHome size={20} />
+            <span className="is-drawer-close:hidden">Dashboard Home</span>
           </Link>
         </li>
         <li>

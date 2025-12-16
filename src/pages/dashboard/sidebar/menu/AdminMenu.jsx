@@ -5,7 +5,7 @@ import {
   FaSignOutAlt,
   FaUsersCog,
 } from "react-icons/fa";
-import { MdVerifiedUser } from "react-icons/md";
+import { MdHome, MdVerifiedUser } from "react-icons/md";
 import { IoMdSettings } from "react-icons/io";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../../../../hooks/useAuth";
@@ -42,6 +42,16 @@ const AdminMenu = () => {
           >
             <FaHome size={20} />
             <span className="is-drawer-close:hidden">Homepage</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/dashboard"
+            className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+            data-tip="Dashboard Home"
+          >
+            <MdHome size={20} />
+            <span className="is-drawer-close:hidden">Dashboard Home</span>
           </Link>
         </li>
         <li>
