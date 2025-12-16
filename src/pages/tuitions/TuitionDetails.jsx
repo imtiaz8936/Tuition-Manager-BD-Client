@@ -36,8 +36,8 @@ const TuitionDetails = () => {
     console.log(data);
     Swal.fire({
       icon: "success",
-      title:
-        "Application Submitted Successfully\nPlease, Wait For Student Approval",
+      title: "Application Submitted Successfully",
+      text: "Please, Wait For Student Approval",
       showConfirmButton: false,
       timer: 3000,
     });

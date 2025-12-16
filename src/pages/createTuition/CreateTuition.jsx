@@ -39,6 +39,9 @@ const CreateTuition = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-6xl bg-white p-6 md:p-10 rounded-xl shadow-md"
       >
+        <h1 className="text-2xl text-center font-bold text-gray-800 mb-8">
+          Fill Out This Form To Post A Tuition
+        </h1>
         {/* grid: 2 columns on lg and above, 1 column on small screens */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Row 1: Subject (L) / Class (R) */}

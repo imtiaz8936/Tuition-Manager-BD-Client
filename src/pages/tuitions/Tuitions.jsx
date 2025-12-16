@@ -39,6 +39,7 @@ const Tuitions = () => {
 
   return (
     <div className="w-full max-w-7xl mx-auto p-4">
+      <h1 className="text-2xl font-bold text-gray-800 mb-6">My Tuitions</h1>
       {/* 🔍 Search & Sort Bar */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <input

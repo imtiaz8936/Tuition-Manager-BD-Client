@@ -37,7 +37,7 @@ const Signup = () => {
             const user = userCredential.user;
             setUser(user);
             axiosSecure.post("/signup", data).then((res) => {
-              console.log("after saving parcel", res.data);
+              console.log("after saving", res.data);
             });
             Swal.fire({
               icon: "success",
@@ -59,7 +59,6 @@ const Signup = () => {
   const handleGoogleSignin = () => {
     userSignInWithGoogle()
       .then((userCredential) => {
-        console.log(userCredential.user);
         setUser(userCredential.user);
         Swal.fire({
           icon: "success",

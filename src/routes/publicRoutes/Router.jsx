@@ -94,9 +94,9 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/tuition-details/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/tuition-details/${params.id}`).then(
-            (res) => res.json()
-          ),
+          fetch(
+            `https://tuition-manager-bd-server.vercel.app/tuition-details/${params.id}`
+          ).then((res) => res.json()),
         element: <TuitionDetails></TuitionDetails>,
       },
       {

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { IoEyeOff } from "react-icons/io5";
 import { FaEye } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -17,6 +17,7 @@ const Signin = () => {
   const [show, setShow] = useState(false);
   const { signIn, setUser, userSignInWithGoogle } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSignin = async (data) => {
     const { email, password } = data;
@@ -31,7 +32,7 @@ const Signin = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        navigate(location.state);
       })
       .catch((error) => {
         toast.error(error);
@@ -41,7 +42,6 @@ const Signin = () => {
   const handleGoogleSignin = () => {
     userSignInWithGoogle()
       .then((userCredential) => {
-        console.log(userCredential.user);
         setUser(userCredential.user);
         Swal.fire({
           icon: "success",

@@ -19,7 +19,7 @@ const Navbar = () => {
       >
         <li>Home</li>
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to="/tuitions"
         className={({ isActive }) => `${isActive ? "active-link" : ""}`}
       >
@@ -30,7 +30,7 @@ const Navbar = () => {
         className={({ isActive }) => `${isActive ? "active-link" : ""}`}
       >
         <li>Tutors</li>
-      </NavLink>
+      </NavLink> */}
       <NavLink
         to="/about"
         className={({ isActive }) => `${isActive ? "active-link" : ""}`}
@@ -43,14 +43,12 @@ const Navbar = () => {
       >
         <li>Contact</li>
       </NavLink>
-      {user && (
-        <NavLink
-          to="/dashboard"
-          className={({ isActive }) => `${isActive ? "active-link" : ""}`}
-        >
-          <li>Dashboard</li>
-        </NavLink>
-      )}
+      <NavLink
+        to="/dashboard"
+        className={({ isActive }) => `${isActive ? "active-link" : ""}`}
+      >
+        <li>Dashboard</li>
+      </NavLink>
     </>
   );
 
