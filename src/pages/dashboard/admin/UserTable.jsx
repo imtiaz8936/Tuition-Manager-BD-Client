@@ -64,10 +64,6 @@ const UserTable = ({ user, refetch }) => {
           <FaEdit />
         </Link>
 
-        {/* <Link className="text-purple-600 hover:text-purple-800">
-          <FaUserShield />
-        </Link> */}
-
         <Link
           onClick={handleDeleteUser}
           className="text-red-600 hover:text-red-800"

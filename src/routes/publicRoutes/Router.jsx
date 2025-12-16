@@ -20,6 +20,7 @@ import ApprovedTuitions from "../../pages/dashboard/admin/ApprovedTuitions";
 import DashboardHome from "../../pages/dashboard/dashboardHome/DashboardHome";
 import PaymentHistory from "../../pages/dashboard/payment/PaymentHistory";
 import TuitionUpdate from "../../pages/tuitions/TuitionUpdate";
+import AdminRoute from "../adminRoute/AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -98,19 +99,35 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/manage-users",
-        Component: ManageUsers,
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/manage-tuitions",
-        Component: ManageTuitions,
+        element: (
+          <AdminRoute>
+            <ManageTuitions></ManageTuitions>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/approved-tuitions",
-        Component: ApprovedTuitions,
+        element: (
+          <AdminRoute>
+            <ApprovedTuitions></ApprovedTuitions>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/update-user-information/:userId",
-        Component: UpdateUserForm,
+        element: (
+          <AdminRoute>
+            <UpdateUserForm></UpdateUserForm>
+          </AdminRoute>
+        ),
       },
     ],
   },
