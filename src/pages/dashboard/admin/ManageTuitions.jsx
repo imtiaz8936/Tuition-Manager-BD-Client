@@ -10,25 +10,29 @@ const ManageTuitions = () => {
   const [subject, setSubject] = useState("");
   const [location, setLocation] = useState("");
   const [sort, setSort] = useState("");
+  const [page, setPage] = useState(1);
 
-  const {
-    data: tuitions = [],
-    isLoading,
-    isError,
-    refetch,
-  } = useQuery({
-    queryKey: ["tuitionsForAdmin", subject, location, sort],
+  const ITEMS_PER_PAGE = 3;
+
+  const { data, isLoading, isError, refetch } = useQuery({
+    queryKey: ["tuitionsForAdmin", subject, location, sort, page],
     queryFn: async () => {
       const res = await axiosSecure.get("/tuitions/admin", {
         params: {
           subject,
           location,
           sort,
+          page,
+          limit: ITEMS_PER_PAGE,
         },
       });
       return res.data;
     },
+    keepPreviousData: true,
   });
+
+  const tuitions = data?.data || [];
+  const totalPages = Math.ceil((data?.total || 0) / ITEMS_PER_PAGE);
 
   return (
     <div className="min-h-screen bg-gray-100 p-4 md:p-8">
@@ -68,7 +72,7 @@ const ManageTuitions = () => {
         </select>
 
         <button
-          onClick={refetch}
+          onClick={() => setPage(1)}
           className="w-full py-3 bg-lime-500 text-white font-medium rounded-md hover:bg-lime-600 transition cursor-pointer"
         >
           Search
@@ -103,6 +107,41 @@ const ManageTuitions = () => {
           ></TuitionCardAdmin>
         ))}
       </div>
+
+      {/* 📄 Pagination */}
+      {totalPages > 1 && (
+        <div className="fixed bottom-0 left-0 w-full bg-white border-t py-4">
+          <div className="flex justify-center items-center gap-2">
+            <button
+              disabled={page === 1}
+              onClick={() => setPage(page - 1)}
+              className="px-4 py-2 border rounded disabled:opacity-50"
+            >
+              Prev
+            </button>
+
+            {[...Array(totalPages).keys()].map((num) => (
+              <button
+                key={num}
+                onClick={() => setPage(num + 1)}
+                className={`px-4 py-2 border rounded ${
+                  page === num + 1 ? "bg-lime-500 text-white" : "bg-white"
+                }`}
+              >
+                {num + 1}
+              </button>
+            ))}
+
+            <button
+              disabled={page === totalPages}
+              onClick={() => setPage(page + 1)}
+              className="px-4 py-2 border rounded disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
