@@ -21,6 +21,8 @@ import DashboardHome from "../../pages/dashboard/dashboardHome/DashboardHome";
 import PaymentHistory from "../../pages/dashboard/payment/PaymentHistory";
 import TuitionUpdate from "../../pages/tuitions/TuitionUpdate";
 import AdminRoute from "../adminRoute/AdminRoute";
+import TutorRoute from "../tutorRoute/TutorRoute";
+import StudentRoute from "../studentRoute/StudentRoute";
 
 export const router = createBrowserRouter([
   {
@@ -55,11 +57,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/post-tuition",
-        element: <CreateTuition></CreateTuition>,
+        element: (
+          <StudentRoute>
+            <CreateTuition></CreateTuition>
+          </StudentRoute>
+        ),
       },
       {
         path: "/dashboard/my-tuitions",
-        element: <Tuitions></Tuitions>,
+        element: (
+          <StudentRoute>
+            <Tuitions></Tuitions>
+          </StudentRoute>
+        ),
       },
       {
         path: "/dashboard/update-tuition/:id",
@@ -67,11 +77,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/tutor-applications",
-        element: <ShowStudentTutorApplications></ShowStudentTutorApplications>,
+        element: (
+          <StudentRoute>
+            <ShowStudentTutorApplications></ShowStudentTutorApplications>
+          </StudentRoute>
+        ),
       },
       {
         path: "/dashboard/tuitions",
-        element: <ShowTutorTuitions></ShowTutorTuitions>,
+        element: (
+          <TutorRoute>
+            <ShowTutorTuitions></ShowTutorTuitions>
+          </TutorRoute>
+        ),
       },
       {
         path: "/dashboard/tuition-details/:id",
@@ -83,7 +101,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/my-applications",
-        element: <TutorApplications></TutorApplications>,
+        element: (
+          <TutorRoute>
+            <TutorApplications></TutorApplications>
+          </TutorRoute>
+        ),
       },
       {
         path: "/dashboard/payment-success",
