@@ -18,7 +18,7 @@ const Hero = () => {
             Connect with qualified tutors or post tuition requests easily.
           </p>
           <Link
-            to="/tuitions"
+            to="/"
             className="inline-block bg-white text-lime-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
           >
             Browse Tuitions

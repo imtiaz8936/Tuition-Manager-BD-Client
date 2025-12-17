@@ -45,7 +45,7 @@ const PaymentSuccess = () => {
 
         {/* History Button */}
         <Link
-          to="/payment-history"
+          to="/dashboard/payment-history"
           className="block w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-semibold transition-all duration-200"
         >
           See Your Payment History

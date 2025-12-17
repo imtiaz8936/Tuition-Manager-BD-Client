@@ -32,7 +32,7 @@ const Signin = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate(location.state);
+        navigate(location.state || "/");
       })
       .catch((error) => {
         toast.error(error);
